@@ -1,44 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Dogs from './Dog';
 import FilterForm from './FilterForm';
 import { createMuiTheme } from '@material-ui/core/styles';
-import deepPurple from '@material-ui/core/colors/deepPurple';
 
 const styles = theme => createMuiTheme({
-    palette: {
-        primary: deepPurple,
-      },
+     
   appBar: {
     position: 'relative',
-    backgroundColor: theme.palette.background.deepPurple,
+    backgroundColor: '#6504b5',
   },
   icon: {
     marginRight: theme.spacing.unit * 2,
   },
   heroUnit: {
     backgroundColor: theme.palette.background.deepPurple,
-  },
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-  },
-  heroButtons: {
-    marginTop: theme.spacing.unit * 4,
   },
   layout: {
     width: 'auto',
@@ -54,29 +37,33 @@ const styles = theme => createMuiTheme({
     padding: `${theme.spacing.unit * 8}px 0`,
   },
   card: {
-    height: '100%',
+    height: '600px',
     display: 'flex',
     flexDirection: 'column',
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
   },
+  h2: {
+    whiteSpace: 'nowrap', 
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
   cardContent: {
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.deepPurple,
+    backgroundColor: '#6504b5',
     padding: theme.spacing.unit * 6,
   },
 });
 
 class PetFinder extends Component {
   constructor(props){
-    console.log('const');
     super(props);
     this.state = {
-      filterAge : {},
-      filterSize : {},
+      filterAge : [],
+      filterSize : [],
       dogsFull : props.dogs,
       dogs : props.dogs
     }
@@ -92,12 +79,12 @@ class PetFinder extends Component {
   }
 
   handleFilterAge = (ageList) => {
-    let dogsFiltered = this.filterItemHelper(ageList,this.filterSize);
+    let dogsFiltered = this.filterItemHelper(ageList,this.state.filterSize);
     this.setState({dogs:dogsFiltered, filterAge: ageList });
     
   }
   handleFilterSize = (sizeList) => {
-    let dogsFiltered = this.filterItemHelper(this.filterAge,sizeList);
+    let dogsFiltered = this.filterItemHelper(this.state.filterAge,sizeList);
     this.setState({dogs:dogsFiltered, filterSize: sizeList });
     
   }
@@ -116,7 +103,7 @@ class PetFinder extends Component {
         </Toolbar>
       </AppBar>
       <main>
-        <FilterForm onFilterAgeChange={this.handleFilterAge}/>
+        <FilterForm onFilterAgeChange={this.handleFilterAge} onFilterSizeChange={this.handleFilterSize}/>
         <Dogs dogs={dogs} classes={this.props.classes}></Dogs> 
       </main>
       {/* Footer */}

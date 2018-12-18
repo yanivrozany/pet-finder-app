@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PetFinder from './Album';
-
+import './App.css';
 // eslint-disable-next-line react/require-render-return
 class App extends Component {
   constructor(props) {
@@ -8,23 +8,28 @@ class App extends Component {
 
     this.state = {
       isLoaded : false,
-      filters: {
-        age:{},
-        size:{}
-      },
-      dogs : []
+      config : {
+        serverURL : 'http://127.0.0.1:5000/api/v1/dogs/findgoldenretriver/'
+      }
     }
   }
   
 
   componentWillMount(){
-    fetch('http://127.0.0.1:5000/dogs/', {mode: 'cors'})
+    fetch(this.state.config.serverURL, {mode: 'cors'})
     .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            dogs: result
+            dogs: result.map(item => {
+              if ('photos' in item.media ){
+                console.log('in if');
+                item.image = item.media.photos.photo[2].$t;
+              }
+
+              return item;
+            })
           });
         },
         

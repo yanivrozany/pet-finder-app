@@ -20,7 +20,7 @@ class FilterForm extends Component {
     this.props.onFilterAgeChange(value);
   }
 
-  handleFilterAge = (value) => {
+  handleFilterSize = (value) => {
     this.props.onFilterSizeChange(value);
   }
 

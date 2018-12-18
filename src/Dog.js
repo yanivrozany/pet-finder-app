@@ -13,11 +13,12 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 3450,
    },
   media: {
-    height: 140,
-  },
+    height: 70000,
+  }
+  
 };
 
 
@@ -26,11 +27,12 @@ const Dogs = ({dogs,classes}) => {
       
           <Grid container spacing={40}>
             {dogs.map(card => (
-              <Grid item key={card} sm={6} md={4} lg={3}>
+              <Grid item key={card.id['$t']} sm={6} md={4} lg={3}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    title="Image title"
+                    image={card.image}
+                    title={card.name['$t']}
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -40,17 +42,9 @@ const Dogs = ({dogs,classes}) => {
                       {card.description['$t']}
                     </Typography>
                     <Typography>
-                      {card.sex['$t']} | {card.age['$t']} | 
+                      {card.sex['$t']} | {card.age['$t']} | {card.size['$t']}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
                 </Card>
               </Grid>
             ))}
@@ -60,4 +54,4 @@ const Dogs = ({dogs,classes}) => {
     }
  
   
-  export default Dogs;
+  export default withStyles(styles)(Dogs);
