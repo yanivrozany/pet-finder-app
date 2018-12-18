@@ -5,3 +5,15 @@ h2.MuiTypography-h5-88 {
   color: '#6504b5';
   text-align: center;
 }
+#filters {
+  width:100%;
+  padding:10px 0;
+}
+
+.combo-select {
+  position: relative;
+  padding: 0 10px;
+  display: table;
+  width: 120px;
+  float: left;
+}

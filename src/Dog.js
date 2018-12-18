@@ -38,9 +38,7 @@ const Dogs = ({dogs,classes}) => {
                     <Typography gutterBottom variant="h5" component="h2">
                       {card.name['$t']}
                     </Typography>
-                    <Typography>
-                      {card.description['$t']}
-                    </Typography>
+                    
                     <Typography>
                       {card.sex['$t']} | {card.age['$t']} | {card.size['$t']}
                     </Typography>

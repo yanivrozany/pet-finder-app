@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PetFinder from './Album';
+import PetFinder from './petFinder';
 import './App.css';
 // eslint-disable-next-line react/require-render-return
 class App extends Component {
